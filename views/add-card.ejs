@@ -1,0 +1,46 @@
+<%- include("layout/header") %>
+
+<!--
+    form to add a card to the deck/db
+
+    first name *required
+    last name
+    age *required
+    village *required
+    rank *required
+
+    first + last name, age text forms
+    village and rank select menu form
+-->
+
+<form action="/add-card" method="post">
+    <ul>
+        <li><input type="text" name="first_name" placeholder="first name" required /></li>
+        <li><input type="text" name="last_name" placeholder="last name"></li>
+        <li><input type="text" name="age" placeholder="age" required /></li>
+        <li>    
+            <select name="village" id="village_select">
+                <option value="1">Leaf</option>
+                <option value="2">Sand</option>
+                <option value="3">Cloud</option>
+                <option value="4">Mist</option>
+                <option value="5">Stone</option>
+                </select>
+        </li>
+        <li>    
+            <select name="rank" id="rank_select">
+                <option value="1">Genin</option>
+                <option value="2">Chunin</option>
+                <option value="3">Jonin</option>
+                <option value="4">Kage</option>
+                <option value="5">rogue</option>
+            </select>
+        </li>
+    </ul>
+    <button type="submit" id="add">Add Ninja</button>
+</form>
+
+
+
+</body>
+</html>
