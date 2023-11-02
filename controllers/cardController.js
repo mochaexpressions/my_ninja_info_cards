@@ -21,7 +21,7 @@ module.exports = function(app){
             var data = [];
             rows.forEach(r => {
                 data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name);
-            })
+            });
             res.render("deck", {shinobi: data});
         });
     });
@@ -41,5 +41,22 @@ module.exports = function(app){
                 else return console.log("successfully inserted values");
             });
             res.redirect("/deck");
+    });
+
+    
+    app.post("/search", urlEncodedParser, (req, res) => {
+        var search = req.body.userQuery;
+
+        console.log(search);
+
+        db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id WHERE last_name LIKE '%"+search+"%' OR first_name LIKE '%"+search+"%'",
+        (err, rows) => {
+            if(err) return console.error(err.message);
+            var data = [];
+            rows.forEach(r => {
+                data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name);
+            });
+            res.render("search", {shinobi: data});
+        });
     });
 };
