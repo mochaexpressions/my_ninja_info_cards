@@ -1,5 +1,3 @@
-<%- include("layout/header") %>
-
 <!--
     filter options at top, sort by name, village, rank (default alphabetical order)
     
@@ -7,7 +5,16 @@
     (will need another template file for this)
 -->
 
-<p>test text</p>
+<%- include("layout/header") %>
+
+<form action="/deck" method="post">
+    <select name="filter" id="filter_card" onchange="this.form.submit()">
+        <option value="default">sort by...</option>
+        <option value="name">Name</option>
+        <option value="village">Village</option>
+        <option value="rank">Rank</option>
+    </select>
+</form>
 
 <ul id="ninja_list">
     <div class="ninja">
@@ -18,6 +25,13 @@
         <% }; %>
     </div>
 </ul>
+
+<script>
+    const filterSelect = document.getElementById("filter_card");
+    filterSelect.addEventListener("change", function() {
+        document.getElementById("filter").submit();
+    });
+</script>
 
 </body>
 </html>

@@ -1,0 +1,12 @@
+<!--
+    have an onChange() for each option to trigger a filter?
+-->
+
+<form action="/deck" method="post" onchange="this.form.submit()" id="filter">
+    <select name="filter" id="filter_card">
+        <option value="default">sort by...</option>
+        <option value="last_name">Name</option>
+        <option value="village_name">Village</option>
+        <option value="rank_name">Rank</option>
+    </select>
+</form>

@@ -8,6 +8,7 @@ let db = new sqlite.Database("./ninjas.db", sqlite.OPEN_READWRITE, function(err)
     console.log("connection successful");
 });
 
+
 module.exports = function(app){
 
     app.get("/", (req, res) => {
@@ -24,6 +25,43 @@ module.exports = function(app){
             });
             res.render("deck", {shinobi: data});
         });
+    });
+
+    app.post("/deck", urlEncodedParser, (req, res) => {
+        var filter = req.body.filter;
+
+        var data = [];
+
+        //console.log(filter);
+
+        if(filter==="name"){
+                db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY last_name ASC", (err, rows) => {
+                    if(err) return console.error(err.message);
+                    rows.forEach(r => {
+                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                    });
+                    return res.render("deck", {shinobi: data});
+                });
+        }
+        else if(filter==="village"){
+            db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY village_id ASC", (err, rows) => {
+                    if(err) return console.error(err.message);
+                    rows.forEach(r => {
+                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                    });
+                    return res.render("deck", {shinobi: data});
+                });
+        }
+                
+        else if(filter==="rank"){
+            db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY rank_id ASC", (err, rows) => {
+                if(err) return console.error(err.message);
+                    rows.forEach(r => {
+                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                    });
+                    return res.render("deck", {shinobi: data});
+            });
+        }
     });
 
     app.get("/add-card", (req, res) => {
@@ -47,10 +85,12 @@ module.exports = function(app){
     app.post("/search", urlEncodedParser, (req, res) => {
         var search = req.body.userQuery;
 
-        console.log(search);
+        //console.log(search);
 
-        db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id WHERE last_name LIKE '%"+search+"%' OR first_name LIKE '%"+search+"%'",
-        (err, rows) => {
+        search = "%" + search + "%";
+
+        db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id WHERE last_name LIKE ? OR first_name LIKE ?",
+        (search, search), (err, rows) => {
             if(err) return console.error(err.message);
             var data = [];
             rows.forEach(r => {
