@@ -1,13 +1,17 @@
 <%- include("layout/header") %>
 
 <ul id="ninja_list">
-    <div class="ninja">
-        <% for(var i=0; i < shinobi.length; i++){ %>
-            <li class="ninja_info">
-                <%= shinobi[i] %>
-            </li>
-        <% }; %>
-    </div>
+    <% for(var i=0; i < shinobi.length; i++){ %>
+        <li class="ninja">
+            <ul class="ninja_info">
+                <% for(const [key, value] of Object.entries(shinobi[i])){ %>
+                    <li class="info">
+                        <%= `${value}` %>
+                    </li>
+                <% }; %>
+            </ul>
+        </li>
+    <% }; %>
 </ul>
 
 </body>

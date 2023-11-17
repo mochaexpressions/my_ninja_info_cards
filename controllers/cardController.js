@@ -21,7 +21,8 @@ module.exports = function(app){
                 if(err) return console.error(err.message);
             var data = [];
             rows.forEach(r => {
-                data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name);
+                var ninja = {last_name: r.last_name, first_name: r.first_name, age: r.age, village: r.village_name, rank: r.rank_name};
+                data.push(ninja);
             });
             res.render("deck", {shinobi: data});
         });
@@ -38,7 +39,8 @@ module.exports = function(app){
                 db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY last_name ASC", (err, rows) => {
                     if(err) return console.error(err.message);
                     rows.forEach(r => {
-                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                        var ninja = {last_name: r.last_name, first_name: r.first_name, age: r.age, village: r.village_name, rank: r.rank_name};
+                        data.push(ninja);
                     });
                     return res.render("deck", {shinobi: data});
                 });
@@ -47,7 +49,8 @@ module.exports = function(app){
             db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY village_id ASC", (err, rows) => {
                     if(err) return console.error(err.message);
                     rows.forEach(r => {
-                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                        var ninja = {last_name: r.last_name, first_name: r.first_name, age: r.age, village: r.village_name, rank: r.rank_name};
+                        data.push(ninja);
                     });
                     return res.render("deck", {shinobi: data});
                 });
@@ -57,7 +60,8 @@ module.exports = function(app){
             db.all("SELECT * FROM ninja INNER JOIN village ON ninja.village_id = village.village_id INNER JOIN rank ON ninja.rank_id = rank.rank_id ORDER BY rank_id ASC", (err, rows) => {
                 if(err) return console.error(err.message);
                     rows.forEach(r => {
-                        data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name)
+                        var ninja = {last_name: r.last_name, first_name: r.first_name, age: r.age, village: r.village_name, rank: r.rank_name};
+                        data.push(ninja);
                     });
                     return res.render("deck", {shinobi: data});
             });
@@ -94,7 +98,8 @@ module.exports = function(app){
             if(err) return console.error(err.message);
             var data = [];
             rows.forEach(r => {
-                data.push(r.last_name, r.first_name, r.age, r.village_name, r.rank_name);
+                var ninja = {last_name: r.last_name, first_name: r.first_name, age: r.age, village: r.village_name, rank: r.rank_name};
+                data.push(ninja);
             });
             res.render("search", {shinobi: data});
         });
