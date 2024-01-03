@@ -1,0 +1,20 @@
+<table id="ninja_list">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>Village</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i < shinobi.length; i++){ %>
+            <tr>
+                <% for(const [key, value] of Object.entries(shinobi[i])){ %>
+                    <td><%= `${value}` %></td>
+                <% }; %>
+            </tr>
+        <% }; %>
+    </tbody>
+</table>

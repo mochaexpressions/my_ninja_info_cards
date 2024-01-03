@@ -1,0 +1,84 @@
+.container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listContainer {
+    background-color: rgb(230, 221, 192);
+    border: solid;
+    border-color: rgb(95, 167, 118);
+    border-width: 20px;
+    border-radius: 1%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#logo_container {
+    background-color: gray;
+}
+
+#logo {
+    display: flex;
+    justify-content: left;
+}
+
+nav, ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    gap: 25px;
+}
+
+nav, a {
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#searchCard {
+    display: flex;
+    margin-bottom: 0;
+}
+
+#table {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#ninja_list {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    background-color: #ddd;
+}
+
+#ninja_list td, #ninja_list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#ninja_list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#ninja_list tr:hover {
+    background-color: #ddd;
+}
+
+#ninja_list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background: linear-gradient(to bottom, rgb(255, 189, 0), rgb(255, 150, 0), 
+    rgb(255, 111,0), rgb(255,64,0));
+    color: white;
+}

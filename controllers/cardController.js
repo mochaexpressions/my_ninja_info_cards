@@ -8,7 +8,6 @@ let db = new sqlite.Database("./ninjas.db", sqlite.OPEN_READWRITE, function(err)
     console.log("connection successful");
 });
 
-
 module.exports = function(app){
 
     app.get("/", (req, res) => {

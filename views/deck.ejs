@@ -1,34 +1,27 @@
 <!--
-    filter options at top, sort by name, village, rank (default alphabetical order)
-    
     list of every card with a link -> on click brings to a page with detail of card info 
     (will need another template file for this)
 -->
+<div class="container">
+    <%- include("layout/header") %>
+    <div class="listContainer">
+        <form action="/deck" method="post">
+            <select name="filter" id="filter_card" onchange="this.form.submit()">
+                <option value="default">sort by...</option>
+                <option value="name">Name</option>
+                <option value="village">Village</option>
+                <option value="rank">Rank</option>
+            </select>
+        </form>
+        <div id="table">
+        <%- include("layout/ninja_list") %>
+        </div>
+    </div>
+</div>
 
-<%- include("layout/header") %>
 
-<form action="/deck" method="post">
-    <select name="filter" id="filter_card" onchange="this.form.submit()">
-        <option value="default">sort by...</option>
-        <option value="name">Name</option>
-        <option value="village">Village</option>
-        <option value="rank">Rank</option>
-    </select>
-</form>
 
-<ul id="ninja_list">
-    <% for(var i=0; i < shinobi.length; i++){ %>
-        <li class="ninja">
-            <ul class="ninja_info">
-                <% for(const [key, value] of Object.entries(shinobi[i])){ %>
-                    <li class="info">
-                        <%= `${value}` %>
-                    </li>
-                <% }; %>
-            </ul>
-        </li>
-    <% }; %>
-</ul>
+
 
 <script>
     const filterSelect = document.getElementById("filter_card");
